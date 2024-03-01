@@ -1,5 +1,5 @@
 {
-  "name": "phd-papers-server",
+  "name": "verify-paper",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -16,7 +16,6 @@
     "express": "^4.18.3",
     "mongodb": "^6.4.0",
     "node": "^21.6.2",
-    "nodemon": "^3.1.0",
-    "vercel": "^33.5.3"
+    "nodemon": "^3.1.0"
   }
 }
