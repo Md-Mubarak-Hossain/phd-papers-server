@@ -12,7 +12,12 @@ app.use(express.json())
 //     res.send(verify-paper)
 // })
 app.get('/', (req, res) => {
-    res.send(`<div style='margin:40px;'>
+    res.send(`<html>
+    <head>
+    <title>This verify paper server</title>
+    </head>
+    <body style='background:lightblue'>
+    <div style='margin:40px;'>
     <h2 style='text-align:justify;'>Welcome to the verify paper server...</h2>
     <div style='text-align: center;'>
         <h3>This server build up and Presented:-</h3>
@@ -71,8 +76,22 @@ app.get('/', (req, res) => {
     </pre>
     </li>
     </ul>
+    <ul type='none'>
+    <li>Deployment:-
+                        <dt>Deploy in Vercel</dt>
+                        <dt><a href="https://phd-paper-server.vercel.app/">Server live site</a></dt>
+    </li>
+    </ul>
+    <ul type='none'>
+    <li>Push code:-
+                       <dt>Github</dt>
+                       <dt><a href="https://github.com/Md-Mubarak-Hossain/phd-papers-server">GitHub Source Code</a></dt>
+    </li>
+    </ul>
     </div>
-</div>`)
+</div>
+    </body>
+    </html>`)
 })
 app.listen(port, () => {
     console.log('PHD PAPER', port)
