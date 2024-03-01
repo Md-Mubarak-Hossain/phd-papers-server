@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     </head>
     <body style='background:lightblue'>
     <div style='margin:40px;'>
-    <h2 style='text-align:justify;'>Welcome to the verify paper server...</h2>
+    <h2 style='text-align:justify;color:blue'>Welcome to the verify paper server...</h2>
     <div style='text-align: center;'>
         <h3>This server build up and Presented:-</h3>
     </div>
@@ -46,6 +46,7 @@ app.get('/', (req, res) => {
             </li>
         </ul>
     </div>
+    
      <div style='text-align: center;'>
         <h3>This server build up technologies:-</h3>
     </div>
