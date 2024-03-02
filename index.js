@@ -1,30 +1,5 @@
 
 const express = require('express');
-/*...........................
-    Favicon section start
-..............................*/
-const fs = require('fs');
-const path = require('path');
-
-const mime = {
-    '.png': 'image/png',
-    '.ico': 'image/x-icon'
-};
-module.exports = (imges, pattern) => {
-    imges = path.resolve(imges);
-    pattern = pattern || /\/favicon\.(png|ico)$/;
-    return (req, res, next) => {
-        if (pattern.test(req.url)) {
-            const ext = path.extname(imges);
-            res.set('Content-Type', mime[ext]);
-            fs.createReadStream(imges).pipe(res);
-        } else next();
-    };
-};
-/*...........................
-    Favicon section end
-..............................*/
-
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const cors = require('cors');
 const app = express();
@@ -33,7 +8,6 @@ const port = process.env.PORT || 5002;
 require('dotenv').config();
 app.use(cors())
 app.use(express.json())
-app.use('/favicon.ico', express.static('imges/favicon.ico'));
 // app.get('/foods', (req, res) => {
 //     res.send(verify-paper)
 // })
