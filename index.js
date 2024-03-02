@@ -1,5 +1,30 @@
 
 const express = require('express');
+/*...........................
+    Favicon section start
+..............................*/
+const fs = require('fs');
+const path = require('path');
+
+const mime = {
+    '.png': 'image/png',
+    '.ico': 'image/x-icon'
+};
+module.exports = (imges, pattern) => {
+    imges = path.resolve(imges);
+    pattern = pattern || /\/favicon\.(png|ico)$/;
+    return (req, res, next) => {
+        if (pattern.test(req.url)) {
+            const ext = path.extname(imges);
+            res.set('Content-Type', mime[ext]);
+            fs.createReadStream(imges).pipe(res);
+        } else next();
+    };
+};
+/*...........................
+    Favicon section end
+..............................*/
+
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const cors = require('cors');
 const app = express();
@@ -8,6 +33,7 @@ const port = process.env.PORT || 5002;
 require('dotenv').config();
 app.use(cors())
 app.use(express.json())
+app.use('/favicon.ico', express.static('imges/favicon.ico'));
 // app.get('/foods', (req, res) => {
 //     res.send(verify-paper)
 // })
@@ -16,18 +42,21 @@ app.get('/', (req, res) => {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>verify paper server</title>
 </head>
 
-<body style='background:lightblue'>
-    <div style='margin:40px;'>
-        <h2 style='text-align:justify;color:blue'>Welcome to the verify paper server...</h2>
-        <div style='text-align: center;'>
+<body style='background:lightblue;'>
+    <div style='width:100%;'>
+    <div>
+    <h4 style='color:green'>The verify paper server is successfully running...</h4>
+    <h2 style='text-align:justify;color:green;'>Welcome to the Verify Paper Server!!</h2>
+    </div>
+        <div style='text-align:center;'>
             <h3>This server build up and Presented:-</h3>
         </div>
-        <div style='display:flex;justify-content:center;'>
+        <div style='display:flex;justify-content:center;border-style:outset;width:75%;margin:auto'>
             <ul type='none' style='padding:20px'>
                 <li><u><i style='color:black;'>Submited by:-</i></u></li>
                 <li style=''>Md Mubarak Hossain
@@ -54,7 +83,7 @@ app.get('/', (req, res) => {
         <div style='text-align: center;'>
             <h3>This server build up technologies:-</h3>
         </div>
-        <div style='display:flex;justify-content:center;'>
+        <div style='display:flex;justify-content:center;border-style:outset;width:75%;margin:auto'>
             <ul type='none'>
                 <li>Used Technology in this server:-
                     <ul type='square'>
@@ -95,6 +124,7 @@ app.get('/', (req, res) => {
             </ul>
         </div>
     </div>
+    <small style='margin-bottom:40px'>&nbsp;</small>
 </body>
 </html>`)
 })
