@@ -72,27 +72,29 @@ app.get('/', (req, res) => {
             </ul>
             <ul type='none'>
                 <li>Dependencies:-
-                    <pre>
-                        "dependencies": {
-                            "node": "^21.6.2",
-                             "express": "^4.18.3",
-                             "cors": "^2.8.5",
-                             "dotenv": "^16.4.5",
-                            "mongodb": "^6.4.0",
-                            "nodemon": "^3.1.0"
-                                         }
+                <li>
+                <pre>
+                "dependencies": {
+                   "node": "^21.6.2",
+                    "express": "^4.18.3",
+                    "cors": "^2.8.5",
+                    "dotenv": "^16.4.5",
+                    "mongodb": "^6.4.0",
+                    "nodemon": "^3.1.0"
+                                }
                     </pre>
+                </li>
                 </li>
             </ul>
             <ul type='none'>
                 <li>Deployment:-
-                    <dt>Deploy in Vercel</dt>
+                    <li>Deploy in Vercel</li>
                     <dt><a href="https://phd-paper-server.vercel.app/" target="_blank">Server live site</a></dt>
                 </li>
             </ul>
             <ul type='none'>
                 <li>Push code:-
-                    <dt>Github</dt>
+                    <li>Github</li>
                     <dt><a href="https://github.com/Md-Mubarak-Hossain/phd-papers-server" target="_blank">GitHub Source Code</a></dt>
                 </li>
             </ul>
