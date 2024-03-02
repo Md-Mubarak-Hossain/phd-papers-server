@@ -75,12 +75,12 @@ app.get('/', (req, res) => {
                     <pre>
                         "dependencies": {
                             "node": "^21.6.2",
-                        "express": "^4.18.3",
-                        "cors": "^2.8.5",
-                        "dotenv": "^16.4.5",
-                        "mongodb": "^6.4.0",
-                        "nodemon": "^3.1.0"
-                            }
+                             "express": "^4.18.3",
+                             "cors": "^2.8.5",
+                             "dotenv": "^16.4.5",
+                            "mongodb": "^6.4.0",
+                            "nodemon": "^3.1.0"
+                                         }
                     </pre>
                 </li>
             </ul>
@@ -106,9 +106,8 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log('PHD PAPER', port)
 })
-
 // const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@librarycluster.iklz7tv.mongodb.net/?retryWrites=true&w=majority`;
-const uri = "mongodb+srv://mubarak:mubarak@cluster1.6osoinv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.6osoinv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 async function run() {
