@@ -84,13 +84,13 @@ app.get('/', (req, res) => {
             <ul type='none'>
                 <li>Deployment:-
                     <dt>Deploy in Vercel</dt>
-                    <dt><a href="https://phd-paper-server.vercel.app/">Server live site</a></dt>
+                    <dt><a href="https://phd-paper-server.vercel.app/" target="_blank">Server live site</a></dt>
                 </li>
             </ul>
             <ul type='none'>
                 <li>Push code:-
                     <dt>Github</dt>
-                    <dt><a href="https://github.com/Md-Mubarak-Hossain/phd-papers-server">GitHub Source Code</a></dt>
+                    <dt><a href="https://github.com/Md-Mubarak-Hossain/phd-papers-server" target="_blank">GitHub Source Code</a></dt>
                 </li>
             </ul>
         </div>
@@ -98,7 +98,6 @@ app.get('/', (req, res) => {
 </body>
 </html>`)
 })
-
 
 app.listen(port, () => {
     console.log('PHD PAPER', port)
