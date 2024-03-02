@@ -1,16 +1,25 @@
-
 const express = require('express');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const cors = require('cors');
 const app = express();
-// const verify-paper=require("verify-paper.json()")
 const port = process.env.PORT || 5002;
 require('dotenv').config();
 app.use(cors())
 app.use(express.json())
+/*.................................................................
+                         Json Data section start
+...................................................................*/
+// const verify-paper=require("verify-paper.json()")
 // app.get('/foods', (req, res) => {
 //     res.send(verify-paper)
 // })
+/*.................................................................
+                         Json Data section end
+...................................................................*/
+
+/*.................................................................
+                    Server layout start
+ ..................................................................*/
 app.get('/', (req, res) => {
     res.send(`<!DOCTYPE html>
 <html lang="en">
@@ -104,20 +113,37 @@ app.get('/', (req, res) => {
 </body>
 </html>`)
 })
+/*.................................................................
+                    Server layout end
+ .................................................................*/
 
 app.listen(port, () => {
     console.log('PHD PAPER', port)
 })
-// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@librarycluster.iklz7tv.mongodb.net/?retryWrites=true&w=majority`;
+
+/*.................................................................
+                    MongoDB connection url start
+...................................................................*/
+
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.6osoinv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
+/*.................................................................
+                    MongoDB connection url end
+...................................................................*/
+
+
 async function run() {
     try {
+        /*...........................................................
+                           Database and data collection start
+        .............................................................*/
         const database = client.db("PHD-PAPER");
         const verifyCollection = database.collection("verify-paper");
-        // const bookingCollection = database.collection("booking");
         const userCollection = database.collection("users");
+        /*...........................................................
+                            Database and data collection end
+         .............................................................*/
 
         app.get("/users/:id", async (req, res) => {
             const id = req.params.id;
