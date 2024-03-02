@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
     <title>verify paper server</title>
 </head>
 
-<body>
+<body style='background:lightblue'>
     <div style='margin:40px;'>
         <h2 style='text-align:justify;color:blue'>Welcome to the verify paper server...</h2>
         <div style='text-align: center;'>
