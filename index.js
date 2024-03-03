@@ -139,6 +139,7 @@ async function run() {
                            Database and data collection start
         .............................................................*/
         const database = client.db("PHD-PAPER");
+        const phdInfoCollection = database.collection("phdInfo");
         const verifyCollection = database.collection("verify-paper");
         const userCollection = database.collection("users");
         /*...........................................................
@@ -185,6 +186,54 @@ async function run() {
             const result = await userCollection.deleteOne(query);
             res.send(result);
         })
+        /*...........................................................
+                             phd info data collection start
+          .............................................................*/
+        app.get("/phdInfo/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const result = await phdInfoCollection.findOne(query);
+            res.send(result);
+        })
+
+        app.get("/phdInfo", async (req, res) => {
+            const query = {};
+            const cursor = phdInfoCollection.find(query);
+            const result = await cursor.toArray();
+            res.send(result);
+        })
+        app.post('/phdInfo', async (req, res) => {
+            const file = req.body;
+            const result = await phdInfoCollection.insertOne(file);
+            res.send(result);
+        })
+
+        app.patch('/phdInfo/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: ObjectId(id) };
+            const updateFile = req.body;
+            const updateDoc = {
+                $set: {
+                    email: updateFile.email,
+                    password: updateFile.password,
+
+                }
+            }
+            const result = await phdInfoCollection.updateOne(filter, updateDoc);
+            res.send(result);
+        })
+
+        app.delete('/phdInfo/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await phdInfoCollection.deleteOne(query);
+            res.send(result);
+        })
+
+        /*...........................................................
+                                     phd info data collection end
+         .............................................................*/
+
         app.get("/verify-paper", async (req, res) => {
             const query = {};
             const cursor = verifyCollection.find(query);
