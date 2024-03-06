@@ -139,33 +139,88 @@ async function run() {
                            Database and data collection start
         .............................................................*/
         const database = client.db("PHD-PAPER");
+        const adminCollection = database.collection("admin");
+        const instituteCollection = database.collection("institute");
+        const userCollection = database.collection("user");
         const phdInfoCollection = database.collection("phdInfo");
         const verifyCollection = database.collection("verify-paper");
-        const userCollection = database.collection("users");
         /*...........................................................
                             Database and data collection end
-         .............................................................*/
+         ...........................................................*/
+        /*............................................
+                 admin data collection start
+        ..............................................*/ 
+        app.get("/admin/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const result = await adminCollection.findOne(query);
+            res.send(result);
+        })
 
-        app.get("/users/:id", async (req, res) => {
+        app.get("/admin", async (req, res) => {
+            const query = {};
+            const cursor = adminCollection.find(query);
+            const result = await cursor.toArray();
+            res.send(result);
+        })
+        app.post('/admin', async (req, res) => {
+            const file = req.body;
+            const result = await adminCollection.insertOne(file);
+            res.send(result);
+        })
+
+        app.patch('/admin/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: ObjectId(id) };
+            const updateFile = req.body;
+            const updateDoc = {
+                $set: {
+                    confirmPassword, fname, lname, userName, contact, userPhoto,accountType,
+                    fname: updateFile.fname,
+                    lname: updateFile.lname,
+                    userName: updateFile.userName,
+                    email: updateFile.email,
+                    contact: updateFile.contact,
+                    userPhoto: updateFile.userPhoto,
+                    type: updateFile.accountType,
+                    password: updateFile.password,
+                    confirmPassword: updateFile.confirmPassword
+
+                }
+            }
+            const result = await adminCollection.updateOne(filter, updateDoc);
+            res.send(result);
+        })
+
+        app.delete('/admin/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await adminCollection.deleteOne(query);
+            res.send(result);
+        })
+        /*............................................
+                 user data collection start
+        ..............................................*/ 
+        app.get("/user/:id", async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) }
             const result = await userCollection.findOne(query);
             res.send(result);
         })
 
-        app.get("/users", async (req, res) => {
+        app.get("/user", async (req, res) => {
             const query = {};
             const cursor = userCollection.find(query);
             const result = await cursor.toArray();
             res.send(result);
         })
-        app.post('/users', async (req, res) => {
+        app.post('/user', async (req, res) => {
             const file = req.body;
             const result = await userCollection.insertOne(file);
             res.send(result);
         })
 
-        app.patch('/users/:id', async (req, res) => {
+        app.patch('/user/:id', async (req, res) => {
             const id = req.params.id;
             const filter = { _id: ObjectId(id) };
             const updateFile = req.body;
@@ -180,7 +235,7 @@ async function run() {
             res.send(result);
         })
 
-        app.delete('/users/:id', async (req, res) => {
+        app.delete('/user/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await userCollection.deleteOne(query);
