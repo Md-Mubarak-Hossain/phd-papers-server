@@ -182,7 +182,7 @@ async function run() {
                     email: updateFile.email,
                     contact: updateFile.contact,
                     userPhoto: updateFile.userPhoto,
-                    type: updateFile.accountType,
+                    accountType: updateFile.accountType,
                     password: updateFile.password,
                     confirmPassword: updateFile.confirmPassword
 
